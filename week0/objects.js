@@ -10,14 +10,17 @@ const invoice = {
  * 1. Log firstName and lastName in dot notation and bracket notation
  */
 
-console.log(`First name: `);
-console.log(`Last name: `);
+console.log(`First name: ${invoice.firstName}`);
+console.log(`Last name: ${invoice.lastName}`);
+
+console.log(`First name: ${invoice['firstName']}`);
+console.log(`Last name: ${invoice['lastName']}`);
 
 /**
  * 2. Log Object Keys
  */
 
-const keys = invoice.YOUR_METHOD;
+const keys = Object.keys(invoice);
 
 console.log({
     keys,
@@ -27,7 +30,7 @@ console.log({
  * 3. Log Object values
  */
 
-const values = invoice.YOUR_METHOD;
+const values = Object.values(invoice);
 
 console.log({
     values,
@@ -37,7 +40,7 @@ console.log({
  * 4. Log Object entries
  */
 
-const entries = invoice.YOUR_METHOD;
+const entries = Object.entries(invoice);
 
 console.log({
     entries,
@@ -48,10 +51,18 @@ console.log({
  * Please, use more than one solution
  */
 
-const copiedInvoice = {};
+const copiedInvoice = Object.assign({}, invoice);
+const copiedInvoice2 = {...invoice};
+const copiedInvoice3 = {};
+
+for (let key in invoice) {
+    copiedInvoice3[key] = invoice[key]
+};
 
 console.log({
     copiedInvoice,
+    copiedInvoice2,
+    copiedInvoice3,
 });
 
 /**
@@ -59,6 +70,7 @@ console.log({
  * Important: original invoice amount shouldnt be modified
  */
 
+// There doesn't seem to be anything to change here. The result is correct
 copiedInvoice.amount = 300;
 
 console.log({
@@ -69,3 +81,11 @@ console.log({
 /**
  * 7. Loop through object and log key-values
  */
+
+ for (const key in invoice) {
+    console.log(`${key}-${invoice[key]}`);
+ }
+
+ for (const [key, value] of Object.entries(invoice)) {
+    console.log(`${key}-${value}`);
+ }
